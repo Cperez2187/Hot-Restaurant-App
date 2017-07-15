@@ -1,8 +1,8 @@
 {
-  "name": "hot-restaurant-app",
+  "name": "restaurantapp",
   "version": "1.0.0",
-  "description": "Restaurant Reservations App",
-  "main": "server.js",
+  "description": "Class 7.15",
+  "main": "restaurantServer.js",
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
