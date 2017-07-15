@@ -60,7 +60,17 @@ app.get("/api/:waitlist?", function(req, res) {
 // Takes in logic from form:
 app.post("/api/tables", function(req, res) {
 	//Not sure yet? Will need to push to reservation thing if table available, will push to waitlist if table not available.
-})
+	if (reservations.length < 5) {
+		reservations.push(newReservation);
+		return true;
+	} else if (reservations.length >= 5) {
+		waitList.push(newReservation);
+		return false;
+	} else {
+		console.log("uh oh something went wrong");
+		return false;
+	}
+});
 
 
 // Listener:
