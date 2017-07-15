@@ -1,0 +1,7 @@
+Create a basic server using Express.js
+Create the front-end
+	-Home Page
+	-Reservation Form
+	-Reservation Views
+Create a set of routes for getting and posting table data
+Create routes for displaying the HTML pages
