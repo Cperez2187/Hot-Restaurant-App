@@ -98,7 +98,7 @@
 			customerID: $('#reserve_uniqueID').val().trim()
 		};
 
-		console.log(newReservation);
+		console.log('New Reservation HTML: ' + newReservation);
 
 		// This line is the magic. It's very similar to the standard ajax function we used.
 		// Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
@@ -130,8 +130,8 @@
 
 	    });
 
-return false;
+		return false;
 
-});
+	});
 
 </script>

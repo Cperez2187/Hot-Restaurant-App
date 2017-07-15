@@ -45,31 +45,44 @@ app.get("/tables", function(req, res) {
 
 // returns JSON objects for all reservations:
 app.get("/api/:reservations?", function(req, res) {
-    for (i in reservations) {
-        return res.json(reservations[i]);
-    }
+
+		// correctly logs the reservation array
+        res.json(reservations);
+
 });
 
 // returns JSON objects for all waitlisted people:
 app.get("/api/:waitlist?", function(req, res) {
-    for (i in waitList) {
-        return res.json(waitlist[i]);
-    }
+
+		// server correctly receiving and logging the waitlist
+        res.json(waitlist);
+
 });
 
 // Takes in logic from form:
 app.post("/api/tables", function(req, res) {
+
+
 	//Not sure yet? Will need to push to reservation thing if table available, will push to waitlist if table not available.
-	if (reservations.length < 5) {
-		reservations.push(newReservation);
-		res.end(true);
-	} else if (reservations.length >= 5) {
-		waitList.push(newReservation);
-		res.end(false);
+	console.log(req.body);
+	if (reservations.length <= 5) {
+
+		reservations.push(req.body);
+
+		console.log(reservations);
+		res.end("true");
+
+
+	} else if (reservations.length > 5) {
+
+		alert('Added to Wait List');
+
+		waitList.push(req.body);
+		res.end("false");
 	} else {
 		console.log("uh oh something went wrong");
 		res.end("");
-	}
+	};
 });
 
 
