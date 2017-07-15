@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require("body-parser");
 const path = require("path");
 
-const = app = express();
+const app = express();
 const PORT = process.env.PORT || 3000;
 
 var reservations = [{
@@ -29,6 +29,7 @@ app.use(bodyParser.json({
   type: "application/vnd.api+json"
 }));
 
+// Routes to all the html files:
 app.get("/", function(req, res) {
 	res.sendFile(path.join(__dirname, "index.html"));
 });
@@ -41,6 +42,38 @@ app.get("/tables", function(req, res) {
 	res.sendFile(path.join(__dirname, "tables.html"));
 });
 
+
+// returns JSON objects for all reservations:
+app.get("/api/:reservations?", function(req, res) {
+    for (i in reservations) {
+        return res.json(reservations[i]);
+    }
+});
+
+// returns JSON objects for all waitlisted people:
+app.get("/api/:waitlist?", function(req, res) {
+    for (i in waitList) {
+        return res.json(waitlist[i]);
+    }
+});
+
+// Takes in logic from form:
 app.post("/api/tables", function(req, res) {
-	//Not sure yet?
+	//Not sure yet? Will need to push to reservation thing if table available, will push to waitlist if table not available.
+	if (reservations.length < 5) {
+		reservations.push(newReservation);
+		return true;
+	} else if (reservations.length >= 5) {
+		waitList.push(newReservation);
+		return false;
+	} else {
+		console.log("uh oh something went wrong");
+		return false;
+	}
+});
+
+
+// Listener:
+app.listen(PORT, function() {
+  console.log("App listening on PORT " + PORT);
 });
